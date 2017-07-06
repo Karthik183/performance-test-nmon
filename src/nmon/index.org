@@ -1,4 +1,4 @@
-#+TITLE: Visualization of system Performance results
+#+TITLE: Visualization of system Performance 
 #+Author: Systems Team
 #+SETUPFILE: ../org-templates/level-1.org
 #+TAGS: boilerplate(b)
