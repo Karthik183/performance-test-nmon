@@ -15,7 +15,7 @@
 * Requirements
   - [[./requirements/index.org][Requirements]]
 * Design
-  - [[./design/index.org][Design diagram]]
+  - [[../images/design.png][Design diagram]]
 * Implementation
   - [[./implementation/index.org][Implementation]]
 * Observation
