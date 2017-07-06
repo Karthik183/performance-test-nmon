@@ -11,7 +11,7 @@ analyze the performance of a system.
 ** Installing nmon
    You can install nmon by using apt-get
 
-#+BEGIN_SRC sh :tangle nperformance.sh
+#+BEGIN_SRC sh :tangle ../performance.sh
 
 sudo apt-get install nmon
 
@@ -20,12 +20,12 @@ sudo apt-get install nmon
 
 ** STARTING WITH NMON
 TO START THE NMON.RUN THE FOLLOWING COMMAND
-#+BEGIN_SRC sh :tangle performance.sh
+#+BEGIN_SRC sh :tangle ../performance.sh
 nmon 
 #+END_SRC
 
 FOR HELP RUN THE FOLLOWING COMMAND.
-#+BEGIN_SRC sh :tangle performance.sh
+#+BEGIN_SRC sh :tangle ../performance.sh
 nmon -h
 #+END_SRC
 
@@ -38,7 +38,7 @@ will be in the format of <hostname>_date_time.nmon.The file will be placed in
 the present working directory.  Let us try to run the following command which
 captures data for every 30 seconds for 120 times.
 
-#+BEGIN_SRC sh :tangle performance.sh
+#+BEGIN_SRC sh :tangle ../performance.sh
 nmon -f -s 30 -c 120
 #+END_SRC
 
@@ -50,7 +50,7 @@ So the above command runs for 30*120=3600 seconds.
  In the above example nmon files are stored in present working directory with some name.But what if
  we want to store the nmon in a specific directory with a specific name.For
  that we are using -F flag in nmon command
-#+BEGIN_SRC 
+#+BEGIN_SRC sh ../perfomance.sh
 nmon -F ~/nmon/virat.nmon -c 120 -s 30
 #+END_SRC
 After running the above command you can see a file named virat.nmon in ~/nmon
@@ -72,7 +72,7 @@ For generating web graphs we use a tool named nmonchart which is to be installed
   
 Method of installating nmonchart.
 
-#+BEGIN_SRC sh :tangle performance.sh
+#+BEGIN_SRC sh :tangle ../performance.sh
 wget http://sourceforge.net/projects/nmon/files/nmonchart31.tar
 tar xvf nmonchart31.tar
 #+END_SRC
@@ -93,7 +93,7 @@ If you does not need some graphs you can remove by making changes in .html file.
 * Automation of collection and visualization of logs using crontab and shell script
 For collecting logs of the system for every minute and storing them in a
 specific directory with a specific name.
-#+BEGIN_SRC sh :tangle performance.sh
+#+BEGIN_SRC sh :tangle ../performance.sh
 /usr/bin/nmon -c 10 -s 6 -F ~/nmon/file-$(date +'%Y-%m-%d:%H:%M').nmon
 #+END_SRC
 the above script in a file named nmon.sh and place it in ~/nmon directory.
@@ -105,7 +105,7 @@ Now after getting  the logs in .nmon files, For visualization we need to convert
 For conversion to html format we have written a shellscript file which takes
 nmon files as input and convert them into html format.
 
-#+BEGIN_SRC sh :tangle performance.sh
+#+BEGIN_SRC sh :tangle ../performance.sh
 for file in ~/nmon/*.nmon
 do
 cd ~/nmon/
@@ -116,7 +116,7 @@ done
 add the above script to a file(sample.sh) and place it in ~/nmon directory.
 
 Now  for making some changes in the html files use the following script.
-#+BEGIN_SRC sh :tangle performance.sh
+#+BEGIN_SRC sh :tangle ../performance.sh
 for test in ~/nmon/file*.html
 do
 sed '1410,1418d' $test > kar-$(date +'%Y-%m-%d:%H:%M').html
@@ -128,7 +128,7 @@ directory.
 For visualizing logs at different time with a single click,link all the html
 files to a single html file(output.html) which means when we open output.html we
 can visualize other logs also.For that we have added the following script.
-#+BEGIN_EXAMPLE
+#+BEGIN_EXAMPLE sh tangle ../performance.sh
 for file in ~/nmon/kar*.html
 do
 sed -i '1i/<html> <a href="'$file'" target="_blank"> '$file' </a><html> <br>' ~/nmon/sample.html
@@ -149,7 +149,7 @@ nmon runs at 11am daily for 5 hours.
 
 Removing logs before 3 days. For removing logs we are deleting .nmon files from
 the ~/nmon directory.
-#+BEGIN_SRC sh :tangle performance.sh
+#+BEGIN_SRC sh :tangle ../performance.sh
 test=$(date +%Y-%m-%d -d "3 day ago")
 echo "$test"
 for sam in ~/nmon/kart/file-$test*.nmon
