@@ -16,6 +16,12 @@ analyze the performance of a system.
 sudo apt-get install nmon
 
 #+END_SRC
+#+BEGIN_SRC sh :tangle ../performance.sh
+wget https://sourceforge.net/projects/nmon/files/nmon16g_x86.tar.gz
+uncompress nmon16g_x86.tar.gz
+tar xvf nmon16g_x86.tar
+
+#+END_SRC
 
 
 ** STARTING WITH NMON
