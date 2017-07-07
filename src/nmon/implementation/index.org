@@ -52,10 +52,9 @@ So the above command runs for 30*120=3600 seconds.
  that we are using -F flag in nmon command
   
  creating a new directory
-#+BEGIN_SRC sh ../performance.sh
-mkdir ~/nmon
-#+END_SRC
+
 #+BEGIN_SRC sh ../perfomance.sh
+mkdir ~/nmon
 nmon -F ~/nmon/test.nmon -c 120 -s 30
 #+END_SRC
 After running the above command you can see a file named test.nmon in ~/nmon
