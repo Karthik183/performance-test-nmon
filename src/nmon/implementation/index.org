@@ -51,16 +51,16 @@ So the above command runs for 30*120=3600 seconds.
  we want to store the nmon in a specific directory with a specific name.For
  that we are using -F flag in nmon command
 #+BEGIN_SRC sh ../perfomance.sh
-nmon -F ~/nmon/virat.nmon -c 120 -s 30
+nmon -F ~/nmon/test.nmon -c 120 -s 30
 #+END_SRC
-After running the above command you can see a file named virat.nmon in ~/nmon
+After running the above command you can see a file named test.nmon in ~/nmon
 directory.It also runs for one hour(120*30sec)
 ** sorting nmon to csv
 
 This file is in a comma-separated values (CSV) format and can be imported into
 a spreadsheet directly.sample.csv will be created in the same directory.
 #+BEGIN_EXAMPLE
-sort  mymachine_311201_1030.nmon > sample.csv
+sort  mymachine_311201_1030.nmon > output.csv
 #+END_EXAMPLE
 
 ** nmonchart
@@ -113,7 +113,7 @@ cd ~/nmon/
 done
 #+END_SRC
  
-add the above script to a file(sample.sh) and place it in ~/nmon directory.
+add the above script to a file(conversion.sh) and place it in ~/nmon directory.
 
 Now  for making some changes in the html files use the following script.
 #+BEGIN_SRC sh :tangle ../performance.sh
@@ -131,7 +131,7 @@ can visualize other logs also.For that we have added the following script.
 #+BEGIN_EXAMPLE sh tangle ../performance.sh
 for file in ~/nmon/kar*.html
 do
-sed -i '1i/<html> <a href="'$file'" target="_blank"> '$file' </a><html> <br>' ~/nmon/sample.html
+sed -i '1i/<html> <a href="'$file'" target="_blank"> '$file' </a><html> <br>' ~/nmon/nmonperformance.html
 echo "entered in to loop"
 done
 #+END_EXAMPLE
@@ -142,7 +142,7 @@ crontab -e
 add the following script in crontab
 #+BEGIN_EXAMPLE
 0 11 * * * sh ~/nmon/nmon.sh
-0 16 * * * sh ~/nmon/sample.sh
+0 16 * * * sh ~/nmon/conversion.sh
 1 16 * * * sh ~/nmon/test.sh
 #+END_EXAMPLE
 nmon runs at 11am daily for 5 hours.
