@@ -50,6 +50,11 @@ So the above command runs for 30*120=3600 seconds.
  In the above example nmon files are stored in present working directory with some name.But what if
  we want to store the nmon in a specific directory with a specific name.For
  that we are using -F flag in nmon command
+  
+ creating a new directory
+#+BEGIN_SRC sh ../performance.sh
+mkdir ~/nmon
+#+END_SRC
 #+BEGIN_SRC sh ../perfomance.sh
 nmon -F ~/nmon/test.nmon -c 120 -s 30
 #+END_SRC
